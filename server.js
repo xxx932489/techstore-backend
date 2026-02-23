@@ -135,8 +135,9 @@ app.post('/api/create-checkout-session', async (req, res) => {
             payment_method_types: ['card'],
             line_items: lineItems,
             mode: 'payment',
-            success_url: `http://localhost:3000/dashboard?success=true`, // We will update this to Vercel later
-            cancel_url: `http://localhost:3000/cart?canceled=true`, // We will update this to Vercel later
+            // ✅ THESE TWO LINES ARE NOW POINTING TO YOUR VERCEL SITE!
+            success_url: `https://techstore-frontend-one.vercel.app/dashboard?success=true`,
+            cancel_url: `https://techstore-frontend-one.vercel.app/cart?canceled=true`,
         });
 
         res.json({ url: session.url });
@@ -145,6 +146,6 @@ app.post('/api/create-checkout-session', async (req, res) => {
     }
 });
 
-// ✅ THIS IS THE ONLY PART THAT CHANGED
+// ✅ THE PORT IS SET CORRECTLY HERE TOO
 const PORT = process.env.PORT || 5006;
 app.listen(PORT, () => console.log(`>>> SERVER RUNNING ON PORT ${PORT} <<<`));
